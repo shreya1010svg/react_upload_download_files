@@ -6,6 +6,7 @@ import { API_URL } from '../utils/constants';
 const FilesList = () => {
   const [filesList, setFilesList] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     const getFilesList = async () => {
@@ -40,6 +41,7 @@ const FilesList = () => {
   return (
     <div className="files-container">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+      <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
       <table className="files-table">
         <thead>
           <tr>
@@ -49,8 +51,19 @@ const FilesList = () => {
           </tr>
         </thead>
         <tbody>
-          {filesList.length > 0 ? (
-            filesList.map(
+	    {filesList.length > 0 ? (
+            filesList.filter((val) =>
+				{
+					if(searchTerm == "")
+					{
+						return val
+					}
+					else if(val.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+						val.description.toLowerCase().includes(searchTerm.toLowerCase()))
+					{
+						return val
+					}
+				}).map(
               ({ _id, title, description, file_path, file_mimetype }) => (
                 <tr key={_id}>
                   <td className="file-title">{title}</td>
