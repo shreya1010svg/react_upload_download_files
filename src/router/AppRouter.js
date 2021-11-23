@@ -10,8 +10,8 @@ const AppRouter = () => (
       <Header />
       <div className="main-content">
         <Switch>
-          <Route component={App} path="/" exact={true} />
-	  <Route component={FilesList} path="/list" />
+          <Route component={FilesList} path="/" exact={true} />
+	  <Route component={App} path="/addFile" />
         </Switch>
       </div>
     </div>

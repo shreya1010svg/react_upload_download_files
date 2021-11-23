@@ -63,7 +63,7 @@ const App = (props) => {
             'Content-Type': 'multipart/form-data'
           }
         });
-	props.history.push('/list');
+	props.history.push('/');
       } else {
         setErrorMsg('Please select a file to add.');
       }
