@@ -3,10 +3,13 @@ import download from 'downloadjs';
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
 
+import useStyles from './filesListStyles';
+
 const FilesList = () => {
   const [filesList, setFilesList] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
+  const classes = useStyles();
 
   useEffect(() => {
     const getFilesList = async () => {
@@ -41,9 +44,10 @@ const FilesList = () => {
   return (
     <div className="files-container">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-      <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
-      <table className="files-table">
-        <thead>
+      <input type="text" placeholder="Search..." className="form-control" autoFocus onChange={event => {setSearchTerm(event.target.value)}}/>
+      <br/>
+      <table className="table table-striped">
+        <thead className={classes.purple}>
           <tr>
             <th>Title</th>
             <th>Description</th>

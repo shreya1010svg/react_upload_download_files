@@ -4,12 +4,15 @@ import App from '../components/App';
 import Header from '../components/Header';
 import FilesList from '../components/FilesList';
 import Auth from '../components/Auth';
+import useStyles from './styles';
 
-const AppRouter = () => (
+const AppRouter = () =>{ 
+	const classes = useStyles();
+return (
   <BrowserRouter>
     <div className="container">
-      <Header />
-      <div className="main-content">
+      <Header className={classes.mainContainer}/>
+      <div>
         <Switch>
           <Route component={FilesList} path="/" exact={true} />
 	  <Route component={App} path="/addFile" />
@@ -18,7 +21,7 @@ const AppRouter = () => (
       </div>
     </div>
   </BrowserRouter>
-);
+);}
 
 export default AppRouter;
 

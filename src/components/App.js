@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col} from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
 import { Provider, useDispatch } from 'react-redux';
+import {Paper, Container, Typography, Button } from '@material-ui/core';
 
 import {createStore} from 'redux';
 import rootReducer from './reducers';
+import useStyles from './authStyles';
 
 const AppWrapper = () => {
   const store = createStore(rootReducer);
@@ -20,6 +22,7 @@ const AppWrapper = () => {
 
 
 const App = (props) => {
+  const classes = useStyles();
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -97,7 +100,10 @@ const App = (props) => {
 
   return (
     <React.Fragment>
-      <Form className="search-form" onSubmit={handleOnSubmit}>
+	<Container component="main" maxwidth="xs">
+	<Paper className={classes.paper} elevation={3}>
+	<Typography variant="h5">Add a File</Typography>
+      <Form className={classes.form} onSubmit={handleOnSubmit}>
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>
           <Col>
@@ -168,10 +174,12 @@ const App = (props) => {
     </div>
   )}
 </div>
-        <Button variant="primary" type="submit">
+        <Button fullWidth variant="contained" color="primary" className={classes.submit} type="submit">
           Submit
         </Button>
       </Form>
+	</Paper>
+		</Container>
     </React.Fragment>
   );
 };

@@ -6,6 +6,7 @@ import useStyles from './styles';
 import { Button } from 'react-bootstrap';
 import Avatar from 'react-avatar';
 import { Provider, useDispatch } from 'react-redux';
+import logo from '../logo.svg';
 
 import {createStore} from 'redux';
 import rootReducer from './reducers';
@@ -42,10 +43,13 @@ const Header = () => {
   };
 
   return (
-    <div className={classes.appBar}>
+    <div className={classes.appBar}>	
+        <NavLink activeClassName="active" to="/" exact={true}>
       <div className={classes.brandContainer}>
-	<h1>Course Materials and Notes</h1>
-      </div>
+	<img src={logo} height='50px'/>
+	<h1>Notomatic</h1>
+      </div>	
+        </NavLink>
       <Toolbar className= {classes.toolbar}>
 	{user ? (
 		<div className={classes.profile}>
@@ -58,9 +62,6 @@ const Header = () => {
 	)}
       </Toolbar>
       <nav>
-        <NavLink activeClassName="active" to="/" exact={true}>
-          Home
-        </NavLink>
         <NavLink activeClassName="active" to="/addFile">
           Add File
         </NavLink>
