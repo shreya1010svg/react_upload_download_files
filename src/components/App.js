@@ -3,10 +3,26 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
+import { Provider, useDispatch } from 'react-redux';
+
+import {createStore} from 'redux';
+import rootReducer from './reducers';
+
+const AppWrapper = () => {
+  const store = createStore(rootReducer);
+
+  return (
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  )
+}
+
 
 const App = (props) => {
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [state, setState] = useState({
     title: '',
     description: '',
@@ -58,6 +74,7 @@ const App = (props) => {
         formData.append('title', title);
         formData.append('description', description);
 	formData.append('course',course);
+	formData.append('uploaded_by',user.result.name)
 
         setErrorMsg('');
         await axios.post(`${API_URL}/upload`, formData, {
@@ -159,5 +176,5 @@ const App = (props) => {
   );
 };
 
-export default App;
+export default AppWrapper;
 

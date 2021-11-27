@@ -14,7 +14,12 @@ const fileSchema = mongoose.Schema(
     },
     course: {
       type: String,
-      required: true,
+      required:true,
+      trim: true
+    },
+    uploaded_by: {
+      type: String,
+      required:true,
       trim: true
     },
     file_path: {

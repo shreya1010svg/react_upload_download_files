@@ -20,8 +20,7 @@ export default makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    width: '300px',
+    width: '200px',
   },
   profile: {
     display: 'flex',

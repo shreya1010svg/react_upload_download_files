@@ -48,6 +48,7 @@ const FilesList = () => {
             <th>Title</th>
             <th>Description</th>
 	    <th>Course</th>
+	    <th>Uploaded By</th>
             <th>Download File</th>
           </tr>
         </thead>
@@ -66,11 +67,12 @@ const FilesList = () => {
 						return val
 					}
 				}).map(
-              ({ _id, title, description, course, file_path, file_mimetype }) => (
+              ({ _id, title, description, course, uploaded_by, file_path, file_mimetype }) => (
                 <tr key={_id}>
                   <td className="file-title">{title}</td>
                   <td className="file-description">{description}</td>
 		  <td className="file-course">{course}</td>
+		  <td className="file-uploaded_by">{uploaded_by}</td>
                   <td>
                     <a
                       href="#/"
