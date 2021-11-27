@@ -9,7 +9,8 @@ const App = (props) => {
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
   const [state, setState] = useState({
     title: '',
-    description: ''
+    description: '',
+    course: ''
   });
   const [errorMsg, setErrorMsg] = useState('');
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
@@ -49,13 +50,14 @@ const App = (props) => {
   event.preventDefault();
 
   try {
-    const { title, description } = state;
-    if (title.trim() !== '' && description.trim() !== '') {
+    const { title, description, course } = state;
+    if (title.trim() !== '' && description.trim() !== '' && course.trim()) {
       if (file) {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('title', title);
         formData.append('description', description);
+	formData.append('course',course);
 
         setErrorMsg('');
         await axios.post(`${API_URL}/upload`, formData, {
@@ -101,6 +103,19 @@ const App = (props) => {
                 name="description"
                 value={state.description || ''}
                 placeholder="Enter description"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+	<Row>
+          <Col>
+            <Form.Group controlId="course">
+              <Form.Control
+                type="text"
+                name="course"
+                value={state.course || ''}
+                placeholder="Enter course name"
                 onChange={handleInputChange}
               />
             </Form.Group>

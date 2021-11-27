@@ -47,6 +47,7 @@ const FilesList = () => {
           <tr>
             <th>Title</th>
             <th>Description</th>
+	    <th>Course</th>
             <th>Download File</th>
           </tr>
         </thead>
@@ -59,15 +60,17 @@ const FilesList = () => {
 						return val
 					}
 					else if(val.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-						val.description.toLowerCase().includes(searchTerm.toLowerCase()))
+						val.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+						val.course.toLowerCase().includes(searchTerm.toLowerCase()))
 					{
 						return val
 					}
 				}).map(
-              ({ _id, title, description, file_path, file_mimetype }) => (
+              ({ _id, title, description, course, file_path, file_mimetype }) => (
                 <tr key={_id}>
                   <td className="file-title">{title}</td>
                   <td className="file-description">{description}</td>
+		  <td className="file-course">{course}</td>
                   <td>
                     <a
                       href="#/"

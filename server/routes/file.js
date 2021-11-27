@@ -14,7 +14,7 @@ const upload = multer({
     }
   }),
   limits: {
-    fileSize: 1000000 // max file size 1MB = 1000000 bytes
+    fileSize: 1000000000 // max file size
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)) {
@@ -33,11 +33,12 @@ Router.post(
   upload.single('file'),
   async (req, res) => {
     try {
-      const { title, description } = req.body;
+      const { title, description, course } = req.body;
       const { path, mimetype } = req.file;
       const file = new File({
         title,
         description,
+	course,
         file_path: path,
         file_mimetype: mimetype
       });
