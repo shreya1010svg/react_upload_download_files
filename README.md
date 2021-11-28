@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# Notomatic - A notes sharing platform
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Notomatic
+## About the Application
 
 Here is the [demo link](https://youtu.be/M4aoEeSF5nk)
 
