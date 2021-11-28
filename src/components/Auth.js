@@ -6,6 +6,7 @@ import { Provider, useDispatch } from 'react-redux';
 
 import {createStore} from 'redux';
 import rootReducer from './reducers';
+import { signin, signup } from '../actions/auth'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
@@ -23,19 +24,29 @@ const AuthWrapper = () => {
   )
 }
 
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+
 const Auth = () => {
 	const classes = useStyles();	
 	const [showPassword, setShowPassword] = useState(false);
 	const [isSignup, setIsSignup] = useState(false);
+	const [authFormData, setAuthFormData] = useState(initialState);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const handleShowPassword = () => setShowPassword( (prevShowPassword) => !prevShowPassword)
 
-	const handleSubmit = () => {
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if(isSignup) {
+			dispatch( signup(authFormData, history) );
+		} else {
+			dispatch( signin(authFormData, history) );
+		}
 	};
 
-	const handleChange = () => {
+	const handleChange = (e) => {
+		setAuthFormData({ ...authFormData, [e.target.name]: e.target.value });
 	};
 
 	const switchMode = () => {

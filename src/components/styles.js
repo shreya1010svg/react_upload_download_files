@@ -26,7 +26,7 @@ export default makeStyles((theme) => ({
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '100px',
+    width: '400px',
   },
   userName: {
     display: 'flex',
