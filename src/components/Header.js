@@ -50,22 +50,18 @@ const Header = () => {
 	<h1>Notomatic</h1>
       </div>	
         </NavLink>
-      <Toolbar className= {classes.toolbar}>
+      <Toolbar>
 	{user ? (
 		<div className={classes.profile}>
 			<Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
 			<Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
 			<Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
+			<NavLink activeClassName="active" variant="contained" className={classes.brandContainer} to="/addFile">Add File</NavLink>
 		</div>
 	) : (
 		<NavLink activeClassName="active" to="/auth" variant="contained" colour="primary">Sign In</NavLink>
 	)}
       </Toolbar>
-      <nav>
-        <NavLink activeClassName="active" to="/addFile">
-          Add File
-        </NavLink>
-      </nav>
     </div>
   );
 };
