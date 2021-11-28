@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Notomatic
+
+Here is the [demo link](https://youtu.be/M4aoEeSF5nk)
+
+Notomatic is a web application with the following features:
+- Uploading files of any format with image preview
+- Downloading files present on Notomatic
+- Search filter on title, description and course
+
 ## Available Scripts
 
 In the project directory, you can run:
